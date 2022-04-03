@@ -13,9 +13,13 @@ In order to successfully install and run the application you are going to need t
 
 ## Installation & Running
 
+1. Download the project from Github - https://github.com/kumogire/urlshortener
+2. Open your local CLI and navigate to the project folder
+3. Continue with the installation instructions
+
 ### Install PHP Dependencies
 
-> Remember: You need to be in the root folder of the project to run these commands.
+> **Remember:** You need to be in the root folder of the project to run these commands.
 
 ```console
 composer install
@@ -35,7 +39,7 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 ### Start Sail
 
-> Remember: Make sure that Docker is up and running before trying to launch Laravel Sail.
+> **Remember:** Make sure that Docker is up and running before trying to launch Laravel Sail.
 
 ```console
 sail up
@@ -49,9 +53,9 @@ Note: You don't have to use the alias, it just makes things simpler. If you don'
 
 Wherever the documentation uses just "sail" in the CLI commands
 
-> Troubleshooting: If when running the command 'sail up', you get a 'command not found' message, remove the vendor folder (from the root of you project and run 'composer update'.
+> **Troubleshooting:** If when running the command 'sail up', you get a 'command not found' message, remove the vendor folder (from the root of you project and run 'composer update'.
 
-> Note: If you need to run commands in the docker container preface the command with 'sail' (if you are using the alias)
+> **Note:** If you need to run commands in the docker container preface the command with 'sail' (if you are using the alias)
 > Example:
 > ```console
 > sail php --version\
@@ -66,6 +70,7 @@ http://localhost
 
 ## Extending Functionality
 
+### Key File Locations
 If you want to make basic changes to the application, here are the locations to key files:
 
 - Vue Router /resources/js/router.vue
@@ -76,6 +81,7 @@ If you want to make basic changes to the application, here are the locations to 
 - Controllers /app/Http/Controllers
 - Models app/Models
 
+### Application Workflow
 The application flow goes something like this:
 
 - Laravel checks the registered routes in /web.php
