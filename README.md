@@ -14,48 +14,84 @@ In order to successfully install and run the application you are going to need t
 ## Installation & Running
 
 ### Install PHP Dependencies
-'''console
+
+> Remember: You need to be in the root folder of the project to run these commands.
+
+```console
 composer install
-'''
+```
 
 ### Install Laravel Sail
-'''console
+
+```console
 php artisan sail:install
-'''
+```
 
 ### Configure Bash Alias
-'''console
+
+```console
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
-'''
+```
 
 ### Start Sail
-'''console
+
+> Remember: Make sure that Docker is up and running before trying to launch Laravel Sail.
+
+```console
 sail up
-'''
+```
 
 Note: You don't have to use the alias, it just makes things simpler. If you don't want to use the alias substitute:
 
-'''console
+```console
 ./vendor/bin/sail up
-'''
+```
 
-wherever the documentation uses just "sail" in the CLI commands
+Wherever the documentation uses just "sail" in the CLI commands
+
+> Troubleshooting: If when running the command 'sail up', you get a 'command not found' message, remove the vendor folder (from the root of you project and run 'composer update'.
+
+> Note: If you need to run commands in the docker container preface the command with 'sail' (if you are using the alias)
+> Example:
+> ```console
+> sail php --version\
+> 
+> sail npm run dev
+> ```
 
 ### View Application
 The application is now ready to be used, open a browser and go to:
 
-http://localhost:8000
+http://localhost
+
+## Extending Functionality
+
+If you want to make basic changes to the application, here are the locations to key files:
+
+- Vue Router /resources/js/router.vue
+- Vue Layout /resources/js/layouts/App.vue
+- Template Blade /resources/views/layouts/vue.blade.php
+- Vue Pages /resources/pages/
+- Laravel Routes /web.php
+- Controllers /app/Http/Controllers
+- Models app/Models
+
+The application flow goes something like this:
+
+- Laravel checks the registered routes in /web.php
+- Laravel hands off the view rendering to VUE's routes/layouts/pages (defined in the /resources/views/layouts/vue.blade.php file)
+- VUE then communicates to the routes defined in api.php which calls the controller/models to perform the required business logic and database queries.
 
 ## Further Documentation
 
-- [Codeception (Testing)] (https://codeception.com/docs/)
-- [Composer (PHP Package Manager)] (https://getcomposer.org/)
-- [Docker (Virtualization)] (https://docs.docker.com/)
-- [Laravel (PHP Framework)] (https://laravel.com/docs/9.x/)
-- [Laravel Sail (Virtualization)] (https://laravel.com/docs/9.x/sail)
-- [Markdown (Documentation Markup)] (https://www.markdownguide.org/cheat-sheet/)
-- [MySQL (Database)] (https://dev.mysql.com/doc/)
-- [Node (Javascript Framework)] (https://nodejs.org/en/)
-- [NPM (Node Package Manager)] (https://www.npmjs.com/)
-- [VUE (Javascript Framework)] (https://vuejs.org/)
+- Codeception (Testing) https://codeception.com/docs/
+- Composer (PHP Package Manager) https://getcomposer.org/
+- Docker (Virtualization) https://docs.docker.com/
+- Laravel (PHP Framework) https://laravel.com/docs/9.x/
+- Laravel Sail (Virtualization https://laravel.com/docs/9.x/sail
+- Markdown (Documentation Markup) https://www.markdownguide.org/cheat-sheet/
+- MySQL (Database) https://dev.mysql.com/doc/
+- Node (Javascript Framework) https://nodejs.org/en/
+- NPM (Node Package Manager) https://www.npmjs.com/
+- VUE (Javascript Framework) https://vuejs.org/
 

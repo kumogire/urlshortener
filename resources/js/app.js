@@ -6,6 +6,7 @@
 
 import router from './router';
 import App from './layouts/App.vue';
+import Vue from "vue";
 
 /**
  * The following block of code may be used to automatically register your
