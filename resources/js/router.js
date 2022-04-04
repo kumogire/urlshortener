@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from './pages/Home.vue';
-import History from './pages/History.vue';
+import Archive from './pages/Archive.vue';
 
 Vue.use(VueRouter);
 
@@ -16,9 +16,9 @@ const router = new VueRouter({
             component: Home
         },
         {
-            path: '/history',
-            name: 'history',
-            component: History
+            path: '/archive',
+            name: 'archive',
+            component: Archive
         },
     ]
 });

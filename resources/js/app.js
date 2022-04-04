@@ -27,6 +27,24 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Import v-from
+import {
+    Button,
+    HasError,
+    AlertError,
+    AlertErrors,
+    AlertSuccess
+} from 'vform/src/components/bootstrap4'
+
+Vue.component(Button.name, Button)
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+Vue.component(AlertErrors.name, AlertErrors)
+Vue.component(AlertSuccess.name, AlertSuccess)
+
+// Component
+Vue.component('shortenerform-component', require('./components/ShortenerFormComponent.vue').default);
+
 const app = new Vue({
     router,
     el: '#app',

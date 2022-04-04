@@ -58,7 +58,7 @@ Wherever the documentation uses just "sail" in the CLI commands
 > **Note:** If you need to run commands in the docker container preface the command with 'sail' (if you are using the alias)
 > Example:
 > ```console
-> sail php --version\
+> sail php --version
 > 
 > sail npm run dev
 > ```
@@ -79,7 +79,8 @@ If you want to make basic changes to the application, here are the locations to 
 - Vue Pages /resources/pages/
 - Laravel Routes /web.php
 - Controllers /app/Http/Controllers
-- Models app/Models
+- Models /app/Models
+- Laravel Logs /storage/logs/laravel.log
 
 ### Application Workflow
 The application flow goes something like this:
@@ -87,6 +88,9 @@ The application flow goes something like this:
 - Laravel checks the registered routes in /web.php
 - Laravel hands off the view rendering to VUE's routes/layouts/pages (defined in the /resources/views/layouts/vue.blade.php file)
 - VUE then communicates to the routes defined in api.php which calls the controller/models to perform the required business logic and database queries.
+
+### Running Tests
+
 
 ## Further Documentation
 
