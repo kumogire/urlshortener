@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Company
+ * App\Models\ShortenedUrl
  *
  *  @property int $id
  *  @property string $url
  *  @property string $shortcode
  *  @method static Builder|ShortenedUrl whereId($value)
  *  @method static Builder|ShortenedUrl whereShortcode($value)
+ *
  */
 
 

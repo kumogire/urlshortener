@@ -9,16 +9,6 @@ use phpDocumentor\Reflection\Types\Boolean;
 
 class ShortenedUrlController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request)
-    {
-        //
-    }
 
     public function store(Request $request)
     {
@@ -66,7 +56,7 @@ class ShortenedUrlController extends Controller
     }
 
 
-    public function shortcodeCreate(): String|Null {
+    public function shortcodeCreate(): ?String {
 
         $shortcode = $this->shortcodeGenerator(8);
         if($this->shortcodeCheck($shortcode) == true){
@@ -92,7 +82,7 @@ class ShortenedUrlController extends Controller
         return $randomCode;
     }
 
-    public function shortcodeCheck(String $shortcode): Boolean{
+    public function shortcodeCheck(String $shortcode): Bool{
         try{
             ShortenedUrl::whereShortcode($shortcode)->exists();
             return true;

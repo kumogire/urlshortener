@@ -1,10 +1,10 @@
 <template>
-    <form @submit.prevent="addShortenedUrl">
+    <form @submit.prevent="addURL">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>URL:</label>
-                    <input type="text" class="form-control" v-model="shortenedurl.title">
+                    <input type="text" class="form-control" v-model="post.url">
                 </div>
             </div>
         </div>
@@ -14,21 +14,22 @@
         </div>
     </form>
 </template>
-
 <script>
+import axios from "axios";
 export default {
-    data(){
+    data() {
         return {
-            shortenedurl:{}
+            post:{},
+            loading:false
         }
     },
     methods: {
-        addShortenedUrl(){
-            console.log(this.shortenedurl);
-            let uri = '/api/shortenedurl/create';
-            this.axios.post(uri, this.shortenedurl).then((response) => {
-                this.$router.push({name: 'shortenedurl'});
-            });
+        addURL() {
+            axios.post('http://localhost/api/shortenedurl/create', this.post).then(response => {
+                console.log( response.data);
+            })
+                .catch(error =>{console.log(error)})
+                .finally(() => this.loading = false)
         }
     }
 }
