@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Resources\ShortenedUrlCollection;
 use App\Models\ShortenedUrl;
-use phpDocumentor\Reflection\Types\Boolean;
 
 class ShortenedUrlController extends Controller
 {
@@ -19,13 +19,14 @@ class ShortenedUrlController extends Controller
 
         $shortenedUrl->save();
 
-        return response()->json('success');
+        return response()->json(['success', $shortenedUrl->shortcode]);
     }
 
 
     public function index()
     {
-        return new ShortenedUrlCollection(ShortenedUrl::all());
+        // Return an array for vue and sort newest to oldest
+        return new ShortenedUrlCollection(ShortenedUrl::all()->sortByDesc("created_at"));
     }
 
 
@@ -83,11 +84,10 @@ class ShortenedUrlController extends Controller
     }
 
     public function shortcodeCheck(String $shortcode): Bool{
-        try{
-            ShortenedUrl::whereShortcode($shortcode)->exists();
-            return true;
+        try {
+            return ShortenedUrl::whereShortcode($shortcode)->exists();
         } catch (ModelNotFoundException $e) {
-            return false;
+            return 0;
         }
     }
 }

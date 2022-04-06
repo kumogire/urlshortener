@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShortenedUrlController;
+use App\Http\Middleware\CheckApiToken;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-use App\Http\Controllers\ShortenedUrlController;
-Route::post('/shortenedurl/create',[ShortenedUrlController::class, 'store']);
-Route::get('/shortenedurl/edit/{id}',[ShortenedUrlController::class, 'edit']);
-Route::post('/shortenedurl/update/{id}',[ShortenedUrlController::class, 'update']);
-Route::delete('/shortenedurl/delete/{id}',[ShortenedUrlController::class, 'delete']);
-Route::get('/shortenedurls',[ShortenedUrlController::class, 'index']);
+
+Route::middleware(['checkapitoken'])->group(function () {
+    Route::post('/shortenedurl/create', [ShortenedUrlController::class, 'store']);
+    Route::get('/shortenedurl/edit/{id}', [ShortenedUrlController::class, 'edit']);
+    Route::post('/shortenedurl/update/{id}', [ShortenedUrlController::class, 'update']);
+    Route::delete('/shortenedurl/delete/{id}', [ShortenedUrlController::class, 'delete']);
+    Route::get('/shortenedurls', [ShortenedUrlController::class, 'index']);
+});

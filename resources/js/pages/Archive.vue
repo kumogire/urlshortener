@@ -5,7 +5,9 @@
                 <div class="card">
                     <div class="card-header">Link Archive</div>
 
-                    <div class="card-body">Show me the links!</div>
+                    <div class="card-body">
+                        <archivedisplay-component></archivedisplay-component>
+                    </div>
                 </div>
             </div>
         </div>

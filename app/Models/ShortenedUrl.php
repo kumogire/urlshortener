@@ -39,4 +39,15 @@ class ShortenedUrl extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function translate(String $shortcode){
+        // Translate the shortocde into a real url and redirect
+        try{
+            $url = ShortenedUrl::whereShortcode($shortcode)->first();
+            return redirect()::away($url);
+        } catch (ModelNotFoundException $e) {
+            return response()->json('Invalid short url. Translation unsuccessful.');
+        }
+
+    }
 }

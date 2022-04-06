@@ -17,12 +17,35 @@ In order to successfully install and run the application you are going to need t
 2. Open your local CLI and navigate to the project folder
 3. Continue with the installation instructions
 
+### Add a new Token to your .env file (optional)
+
+Normally you would never check your .env file into the repo. I added it to this repo for ease of setup and learning purposes.
+If you are not using this code for a learning exercise, you are going to want to change the API_TOKEN that the project comes with:
+
+```console
+API_TOKEN=3F290RVY9k8WyJ4ormLK
+```
+### Modify your ray.php file (optional)
+This is another file you wouldn't check in to your repo as it is only needed in dev for debugging code and processes.
+If you are going extend this codebase and use Spatie/Ray, which I highly recommend, remember to change the file paths in the ray.php file:
+
+```console
+'remote_path' => env('RAY_REMOTE_PATH', '\home\kanderson\urlshortener'),
+'local_path' => env('RAY_LOCAL_PATH', '\\wsl.localhost\Ubuntu\home\kanderson\urlshortener'),
+```
+
 ### Install PHP Dependencies
 
-> **Remember:** You need to be in the root folder of the project to run these commands.
+> **Remember:** You need to be in the root folder of the project to run all the following commands.
 
 ```console
 composer install
+```
+
+### Install NPM Dependencies
+
+```console
+npm install
 ```
 
 ### Install Laravel Sail
@@ -31,7 +54,7 @@ composer install
 php artisan sail:install
 ```
 
-### Configure Bash Alias
+### Configure Bash Alias (optional)
 
 ```console
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
@@ -39,19 +62,19 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 
 ### Start Sail
 
-> **Remember:** Make sure that Docker is up and running before trying to launch Laravel Sail.
+> **Remember:** Make sure that Docker is up and running on your local machine **before** trying to launch Laravel Sail.
 
 ```console
 sail up
 ```
 
-Note: You don't have to use the alias, it just makes things simpler. If you don't want to use the alias substitute:
+Note: You don't have to use the alias, it just makes things simpler. If you don't want to use the alias substitute...
 
 ```console
 ./vendor/bin/sail up
 ```
 
-Wherever the documentation uses just "sail" in the CLI commands
+...wherever the documentation uses just "sail" in the CLI commands
 
 > **Troubleshooting:** If when running the command 'sail up', you get a 'command not found' message, remove the vendor folder (from the root of you project and run 'composer update'.
 
@@ -62,6 +85,11 @@ Wherever the documentation uses just "sail" in the CLI commands
 > 
 > sail npm run dev
 > ```
+
+### Migrate the database
+```console
+sail artisan migrate
+```
 
 ### View Application
 The application is now ready to be used, open a browser and go to:
@@ -86,15 +114,22 @@ If you want to make basic changes to the application, here are the locations to 
 The application flow goes something like this:
 
 - Laravel checks the registered routes in /web.php
+- Laravel uses a middleware check 'CheckShortcode' to see if the short url is valid, and if so, redirects the user to the corresponding url stored in the database.
 - Laravel hands off the view rendering to VUE's routes/layouts/pages (defined in the /resources/views/layouts/vue.blade.php file)
 - VUE then communicates to the routes defined in api.php which calls the controller/models to perform the required business logic and database queries.
 
 ### Running Tests
 
+#### Stress testing with Artillery
+
+Run a test via the CLI to check how the application perform with many requests a second:
+```console
+artillery quick -c 10 http://localhost
+```
 
 ## Further Documentation
 
-- Codeception (Testing) https://codeception.com/docs/
+- Artillery (Stress Testing) https://www.artillery.io/
 - Composer (PHP Package Manager) https://getcomposer.org/
 - Docker (Virtualization) https://docs.docker.com/
 - Laravel (PHP Framework) https://laravel.com/docs/9.x/
@@ -103,5 +138,6 @@ The application flow goes something like this:
 - MySQL (Database) https://dev.mysql.com/doc/
 - Node (Javascript Framework) https://nodejs.org/en/
 - NPM (Node Package Manager) https://www.npmjs.com/
+- Spatie/Ray (Local application debugging) https://spatie.be/products/ray
 - VUE (Javascript Framework) https://vuejs.org/
 

@@ -25,7 +25,7 @@ export default {
     },
     methods: {
         addURL() {
-            axios.post('http://localhost/api/shortenedurl/create', this.post).then(response => {
+            axios.post('http://localhost/api/shortenedurl/create?token=' + process.env.API_TOKEN, this.post).then(response => {
                 console.log( response.data);
             })
                 .catch(error =>{console.log(error)})
