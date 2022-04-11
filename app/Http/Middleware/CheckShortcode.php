@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\ShortenedUrl;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class CheckShortcode
 {
@@ -17,12 +18,20 @@ class CheckShortcode
      */
     public function handle(Request $request, Closure $next)
     {
-        $url = ShortenedUrl::whereShortcode($request)->first();
+        // If the third segment of the URL matches a value in the database, redirect
+        $segment = explode("/", $request->url());
 
-        if ($url) {
-            return redirect()::away($url);
+        // Check to see if there is a 3rd segment
+        if(isset($segment[3])){
+            $longurl = ShortenedUrl::whereShortcode($segment[3])->first();
+        }else{
+            $longurl = "";
+        }
+
+        if ($longurl) {
+            return redirect()->away($longurl->url);
         } else {
-            return redirect('home');
+            return $next($request);
         }
     }
 }

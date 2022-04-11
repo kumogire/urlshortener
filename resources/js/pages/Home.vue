@@ -6,8 +6,7 @@
                     <div class="card-header">Get Short!</div>
 
                     <div class="card-body">
-                        <p>Great things come in small packages. This especially applies to URLs.</p>
-                        <p>Let's turn those ginormous URLs into cute short URLs:</p>
+                        <p>Transform your long urls into short urls.</p>
                         <shortenerform-component></shortenerform-component>
                     </div>
                 </div>

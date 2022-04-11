@@ -19,7 +19,7 @@ class ShortenedUrlController extends Controller
 
         $shortenedUrl->save();
 
-        return response()->json(['success', $shortenedUrl->shortcode]);
+        return response()->json(['id' => $shortenedUrl->id, 'shortcode' => $shortenedUrl->shortcode, 'url' => $shortenedUrl->url]);
     }
 
 

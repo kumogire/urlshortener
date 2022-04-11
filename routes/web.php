@@ -13,6 +13,7 @@ use App\Http\Middleware\CheckShortcode;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::middleware(['checkshortcode'])->group(function () {
     Route::get('/{any}', function () {
         return view('layouts.vue');

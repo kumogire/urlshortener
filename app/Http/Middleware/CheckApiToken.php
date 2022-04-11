@@ -17,10 +17,9 @@ class CheckApiToken
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->input('token') !== env('API_TOKEN')) {
-            return redirect('home');
-        } else {
-            return response()->json('Invalid Token');
+        if ($request->input('token') !== env('MIX_API_KEY')) {
+           return response()->json(['error' => 'Unauthenticated.'], 401);
         }
+        return $next($request);
     }
 }

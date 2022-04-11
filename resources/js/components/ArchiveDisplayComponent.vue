@@ -26,7 +26,7 @@ export default {
         }
     },
     created() {
-        let uri = 'http://localhost/api/shortenedurls';
+        let uri = 'http://localhost/api/shortenedurls?token=' + process.env.MIX_API_KEY;
         this.axios.get(uri).then(response => {
             this.posts = response.data.data;
         });
@@ -34,7 +34,7 @@ export default {
     methods: {
         deletePost(id)
         {
-            let uri = `http://localhost/api/shortenedurl/delete/${id}`;
+            let uri = 'http://localhost/api/shortenedurl/delete/' + id + '?token=' + process.env.MIX_API_KEY;
             this.axios.delete(uri).then(response => {
                 this.posts.splice(this.posts.indexOf(id), 1);
             });

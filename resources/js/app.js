@@ -20,6 +20,14 @@ Vue.use(VueRouter);
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 Vue.use(VueAxios, axios);
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCopy as farCopy } from '@fortawesome/free-regular-svg-icons';
+import { faTrashCan as farTrashCan } from '@fortawesome/free-regular-svg-icons';
+library.add(farCopy, farTrashCan);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
