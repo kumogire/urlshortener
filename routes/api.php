@@ -22,8 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['checkapitoken'])->group(function () {
     Route::post('/shortenedurl/create', [ShortenedUrlController::class, 'store']);
-    Route::get('/shortenedurl/edit/{id}', [ShortenedUrlController::class, 'edit']);
-    Route::post('/shortenedurl/update/{id}', [ShortenedUrlController::class, 'update']);
     Route::delete('/shortenedurl/delete/{id}', [ShortenedUrlController::class, 'delete']);
     Route::get('/shortenedurls', [ShortenedUrlController::class, 'index']);
 });

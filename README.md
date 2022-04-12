@@ -127,17 +127,28 @@ Run a test via the CLI to check how the application perform with many requests a
 artillery quick -c 10 http://localhost
 ```
 
+Run Jest (Vue) Unit test(s)
+```console
+
+```
+Run PHPUnit (PHP) Unit test(s)
+```console
+
+```
+
 ## Further Documentation
 
 - Artillery (Stress Testing) https://www.artillery.io/
 - Composer (PHP Package Manager) https://getcomposer.org/
 - Docker (Virtualization) https://docs.docker.com/
+- Jest (JavaScript Testing Framework) - https://jestjs.io/docs/getting-started/
 - Laravel (PHP Framework) https://laravel.com/docs/9.x/
-- Laravel Sail (Virtualization https://laravel.com/docs/9.x/sail
+- Laravel Sail (Virtualization) https://laravel.com/docs/9.x/sail
 - Markdown (Documentation Markup) https://www.markdownguide.org/cheat-sheet/
 - MySQL (Database) https://dev.mysql.com/doc/
 - Node (Javascript Framework) https://nodejs.org/en/
 - NPM (Node Package Manager) https://www.npmjs.com/
+- PHPUnit (PHP Testing Framework) https://phpunit.de/documentation.html
 - Spatie/Ray (Local application debugging) https://spatie.be/products/ray
 - VUE (Javascript Framework) https://vuejs.org/
 

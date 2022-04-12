@@ -29,24 +29,6 @@ class ShortenedUrlController extends Controller
         return new ShortenedUrlCollection(ShortenedUrl::all()->sortByDesc("created_at"));
     }
 
-
-    public function edit(Int $id)
-    {
-        $shortenedUrl = ShortenedUrl::find($id);
-        return response()->json($shortenedUrl);
-    }
-
-
-    public function update(Int $id, Request $request)
-    {
-        $shortenedUrl = ShortenedUrl::find($id);
-
-        $shortenedUrl->update($request->all());
-
-        return response()->json('Shortcode successfully updated');
-    }
-
-
     public function delete(Int $id)
     {
         $shortenedUrl = ShortenedUrl::find($id);
