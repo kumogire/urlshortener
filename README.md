@@ -11,11 +11,21 @@ In order to successfully install and run the application you are going to need t
 - Node v17.4.0
 - NPM v8.6.0
 
-## Installation & Running
+# Installation & Running 
+
+## Project setup using the Makefile
 
 1. Download the project from Github - https://github.com/kumogire/urlshortener
 2. Open your local CLI and navigate to the project folder
-3. Continue with the installation instructions
+3. Run **make help** for a list of commands
+```console
+make help
+```
+4. Run **make all** to run install, setup, server and tests
+```console
+make all
+```
+## Project setup using manual CLI commands
 
 ### Add a new Token to your .env file (optional)
 
@@ -76,7 +86,7 @@ Note: You don't have to use the alias, it just makes things simpler. If you don'
 
 ...wherever the documentation uses just "sail" in the CLI commands
 
-> **Troubleshooting:** If when running the command 'sail up', you get a 'command not found' message, remove the vendor folder (from the root of you project and run 'composer update'.
+> **Troubleshooting:** If when running the command 'sail up', you get a 'command not found' message, remove the vendor folder (from the root of you project) and run 'composer update'.
 
 > **Note:** If you need to run commands in the docker container preface the command with 'sail' (if you are using the alias)
 > Example:
@@ -115,25 +125,25 @@ The application flow goes something like this:
 
 - Laravel checks the registered routes in /web.php
 - Laravel uses a middleware check 'CheckShortcode' to see if the short url is valid, and if so, redirects the user to the corresponding url stored in the database.
-- Laravel hands off the view rendering to VUE's routes/layouts/pages (defined in the /resources/views/layouts/vue.blade.php file)
-- VUE then communicates to the routes defined in api.php which calls the controller/models to perform the required business logic and database queries.
+- Laravel hands off the view rendering to VUEJS (defined in the /resources/views/layouts/vue.blade.php file)
+- Default VUEJS (/resources/js/app.js) loads:
+  - Application routes (/resources/js/app.js)
+  - Registers (and makes available) application components (/resources/js/components/)
+  - Loads application templates (/resources/js/layouts/App.vue) and pages (/resources/js/pages/Home.vue)
+- VUEJS (via axios) stores/reads data in the MySQL database using Laravel defined API routes (/routes/api.php)
 
 ### Running Tests
 
 #### Stress testing with Artillery
 
+Run PHPUnit (PHP) Unit & Feature test(s)
+```console
+phpunit 
+```
+
 Run a test via the CLI to check how the application perform with many requests a second:
 ```console
-artillery quick -c 10 http://localhost
-```
-
-Run Jest (Vue) Unit test(s)
-```console
-
-```
-Run PHPUnit (PHP) Unit test(s)
-```console
-
+artillery quick -c 5 http://localhost
 ```
 
 ## Further Documentation
@@ -141,9 +151,9 @@ Run PHPUnit (PHP) Unit test(s)
 - Artillery (Stress Testing) https://www.artillery.io/
 - Composer (PHP Package Manager) https://getcomposer.org/
 - Docker (Virtualization) https://docs.docker.com/
-- Jest (JavaScript Testing Framework) - https://jestjs.io/docs/getting-started/
 - Laravel (PHP Framework) https://laravel.com/docs/9.x/
 - Laravel Sail (Virtualization) https://laravel.com/docs/9.x/sail
+- Makefile (Application Setup) https://www.markdownguide.org/cheat-sheet/
 - Markdown (Documentation Markup) https://www.markdownguide.org/cheat-sheet/
 - MySQL (Database) https://dev.mysql.com/doc/
 - Node (Javascript Framework) https://nodejs.org/en/

@@ -7258,6 +7258,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var uri = href + 'api/shortenedurls?token=' + "3F290RVY9k8WyJ4ormLK";
     this.axios.get(uri).then(function (response) {
       _this.urls = response.data.data;
+      console.log(response.data.data);
     });
   },
   mounted: function mounted() {
@@ -7276,7 +7277,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.errors.push('URL not valid');
       } else {
         axios__WEBPACK_IMPORTED_MODULE_1___default().post(window.location.href + 'api/shortenedurl/create?token=' + "3F290RVY9k8WyJ4ormLK", this.post).then(function (response) {
-          // console.log(response.data);
+          console.log(response.data);
           _this2.post.url = '';
 
           _this2.urls.unshift(response.data);

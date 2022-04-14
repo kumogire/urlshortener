@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  */
 
-
 class ShortenedUrl extends Model
 {
     use HasFactory;
@@ -41,7 +40,7 @@ class ShortenedUrl extends Model
     }
 
     public function translate(String $shortcode){
-        // Translate the shortocde into a real url and redirect
+        // Translate the shortcode into a real url and redirect
         try{
             $url = ShortenedUrl::whereShortcode($shortcode)->first();
             return redirect()::away($url);

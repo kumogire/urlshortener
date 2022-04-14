@@ -59,6 +59,7 @@ export default {
         let uri = href + 'api/shortenedurls?token=' + process.env.MIX_API_KEY;
         this.axios.get(uri).then(response => {
             this.urls = response.data.data;
+            console.log(response.data.data);
         });
     },
     mounted() {
@@ -74,7 +75,7 @@ export default {
                 this.errors.push('URL not valid');
             }else{
                 axios.post(window.location.href + 'api/shortenedurl/create?token=' + process.env.MIX_API_KEY, this.post).then(response => {
-                    // console.log(response.data);
+                    console.log(response.data);
                     this.post.url = '';
                     this.urls.unshift(response.data);
                 })
